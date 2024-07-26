@@ -4,12 +4,10 @@ function verifyUserAuthorization(roleToVerify) {
   return (request, response, next) => {
     const { role } = request.user
 
-    if (role !== roleToVerify) {
-      console.log(role, roleToVerify)
+    if (!roleToVerify.includes(role)) {
       throw new AppError("Unauthorized", 401)
     }
-
-    console.log(role, roleToVerify)
+    
     return next()
   }
 }
